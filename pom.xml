@@ -1,17 +1,16 @@
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>sc-java-testing</groupId>
   <artifactId>sc-java-testing</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  
+
   <repositories>
     <repository>
       <id>jitpack.io</id>
       <url>https://jitpack.io</url>
     </repository>
   </repositories>
-  
+
   <dependencies>
     <!-- Cucumber dependencies -->
     <dependency>
@@ -36,17 +35,17 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>3.141.59</version>
+      <version>4.10.0</version>
     </dependency>
 
     <!-- WebDriver Manager -->
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
-      <version>4.4.3</version>
+      <version>5.5.3</version>
     </dependency>
   </dependencies>
-  
+
   <build>
     <plugins>
       <plugin>
