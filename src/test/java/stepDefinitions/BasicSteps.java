@@ -1,12 +1,18 @@
 package stepDefinitions;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import env.DriverUtil;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import pages.LandingPageValidation;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.Duration;
 import java.util.Properties;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -36,6 +42,9 @@ public class BasicSteps {
             throw new RuntimeException("URL not specified in the env.properties file.");
         }
         driver.get(url);
+
+        // Validate the title
+        LandingPageValidation.validate();
     }
 
     @Then("User prints success")
@@ -75,4 +84,38 @@ public class BasicSteps {
         }
     }
 
+    @Given("User navigates to the Contact Us page")
+    public void user_navigates_to_the_contact_us_page() {
+        driver.findElement(By.linkText("Contact Us")).click();
+    }
+
+    @Given("User fills out the contact form with first name {string}, last name {string}, email {string}, phone number {string}, and message {string}")
+    public void user_fills_out_the_contact_form(String firstName, String lastName, String email, String phoneNumber, String message) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        WebElement firstNameInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fname")));
+        WebElement lastNameInput = driver.findElement(By.id("lname"));
+        WebElement emailInput = driver.findElement(By.id("email"));
+        WebElement phoneNumberInput = driver.findElement(By.id("pnumber"));
+        WebElement messageInput = driver.findElement(By.id("message"));
+
+        firstNameInput.sendKeys(firstName);
+        lastNameInput.sendKeys(lastName);
+        emailInput.sendKeys(email);
+        phoneNumberInput.sendKeys(phoneNumber);
+        messageInput.sendKeys(message);
+    }
+
+    @Then("User submits the form and captures the confirmation message")
+    public void user_submits_the_form_and_captures_the_confirmation_message() {
+        driver.findElement(By.cssSelector("button[type='submit']")).click();
+
+        // Assuming the confirmation message is displayed in an alert
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.alertIsPresent());
+        String alertMessage = driver.switchTo().alert().getText();
+        driver.switchTo().alert().accept();
+
+        System.out.println("Confirmation Message: " + alertMessage);
+    }
 }
