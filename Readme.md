@@ -47,7 +47,7 @@ This project is a test automation framework built using Java, Selenium WebDriver
 
 2. **From IDE:**
     - Right-click on `TestRunner` class in `runner` package and select `Run 'TestRunner'`.
-
+    - Specify the browser name in the configurations for firefox its -Dbrowser=firefox and for chrome its -Dbrowser=chrome
 ### Project Structure
 
 - `src/test/resources/features`: Contains feature files written in Gherkin language.
