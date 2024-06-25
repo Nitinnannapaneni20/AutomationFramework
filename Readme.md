@@ -1,6 +1,5 @@
 
-# Java Selenium Cucumber Project hh
-
+# Java Selenium Cucumber Project
 ## Overview
 
 This project is a test automation framework built using Java, Selenium WebDriver, and Cucumber. It allows you to write and run automated tests for web applications using behavior-driven development (BDD) methodology.
